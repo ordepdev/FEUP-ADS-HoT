@@ -1,7 +1,5 @@
 package hot.devices;
 
-import hot.Device;
-
 public class AC extends Device {
 
 	private int targetTemperature = 10;

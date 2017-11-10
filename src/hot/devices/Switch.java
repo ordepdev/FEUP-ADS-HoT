@@ -2,8 +2,6 @@ package hot.devices;
 
 import java.util.ArrayList;
 
-import hot.Device;
-
 public class Switch extends Device {
 
 	ArrayList<Device> devices = new ArrayList<Device>();

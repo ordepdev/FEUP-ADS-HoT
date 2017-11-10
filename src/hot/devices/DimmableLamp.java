@@ -1,7 +1,5 @@
 package hot.devices;
 
-import hot.Device;
-
 public class DimmableLamp extends Device {
 	private int intensity = 0;
 

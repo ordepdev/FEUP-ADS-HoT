@@ -1,5 +1,6 @@
 package hot;
 
+import hot.devices.Device;
 import hot.devices.Lamp;
 
 public class DeviceFactory {

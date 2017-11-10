@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import hot.devices.AC;
+import hot.devices.Device;
 import hot.devices.DimmableLamp;
 import hot.devices.Switch;
 
