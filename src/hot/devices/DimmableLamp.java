@@ -1,8 +1,8 @@
 package hot.devices;
 
-import hot.Device;
+import hot.BaseDevice;
 
-public class DimmableLamp extends Device {
+public class DimmableLamp extends BaseDevice {
 	private int intensity = 0;
 
 	public void dimmTo(int i) {

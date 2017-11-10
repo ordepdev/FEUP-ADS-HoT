@@ -1,5 +1,5 @@
 package hot;
 
-public class NullDevice extends Device {
+public class NullDevice extends BaseDevice {
 
 }

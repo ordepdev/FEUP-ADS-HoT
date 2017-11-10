@@ -1,10 +1,11 @@
 package hot.devices;
 
-import java.util.ArrayList;
-
+import hot.BaseDevice;
 import hot.Device;
 
-public class Switch extends Device {
+import java.util.ArrayList;
+
+public class Switch extends BaseDevice {
 
 	ArrayList<Device> devices = new ArrayList<Device>();
 	

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import hot.devices.AC;
 import hot.devices.DimmableLamp;
+import hot.devices.RoomSystem;
 import hot.devices.Switch;
 
 public class HoT {
@@ -22,17 +23,15 @@ public class HoT {
 		Device l1 = DeviceFactory.create("Lamp"); registry.put("L1", l1);
 		Device l2 = DeviceFactory.create("Lamp"); registry.put("L2", l2);
 		DimmableLamp l3 = (DimmableLamp) DeviceFactory.create("DimmableLamp");
-
-		Switch suitch = new Switch(); 
 		AC ac = new AC();
-		
-		// usage scenarios
-		suitch.connectTo(l1);
-		suitch.connectTo(l2);
-		suitch.turnOn();
-		
 		ac.setTemperature(21);
-		ac.turnOn();
+
+		Switch suitch = new Switch();
+		Device roomSystem = new RoomSystem(l1, l2, l3, ac);
+
+		// usage scenarios
+		suitch.connectTo(roomSystem);
+		suitch.turnOn();
 		
 		// verifying the system...
 		if (l1.isOn() && l2.isOn())
