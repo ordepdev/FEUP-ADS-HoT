@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class AggregatedDevice implements Device {
 
-  protected List<Device> devices = new ArrayList<>();
+  private List<Device> devices = new ArrayList<>();
 
   public AggregatedDevice(Device... devices) {
     this.devices.addAll(Arrays.asList(devices));

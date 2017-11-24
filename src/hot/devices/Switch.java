@@ -4,20 +4,17 @@ import hot.BaseDevice;
 import hot.Device;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Switch extends BaseDevice {
 
-	ArrayList<Device> devices = new ArrayList<Device>();
+	private List<Device> devices = new ArrayList<>();
 	
 	public void connectTo(Device device) {
 		devices.add(device);
 	}
 	
 	public void turnOn() {
-		for (Device device: devices) {
-			device.turnOn();
-		}
+		devices.forEach(Device::turnOn);
 	}
-
-
 }

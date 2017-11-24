@@ -2,7 +2,7 @@ package hot;
 
 public abstract class BaseDevice implements Device {
 
-  protected boolean on = false;
+  private boolean on = false;
 
   public void turnOn() {
     on = true;

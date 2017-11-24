@@ -1,6 +1,6 @@
 package hot;
 
-import hot.devices.Lamp;
+import hot.devices.NullDevice;
 
 public class DeviceFactory {
 
