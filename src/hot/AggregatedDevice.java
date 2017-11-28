@@ -26,4 +26,9 @@ public abstract class AggregatedDevice implements Device {
   public boolean isOn() {
     return devices.stream().allMatch(Device::isOn);
   }
+
+  @Override
+  public Device clone() {
+    return this.clone();
+  }
 }

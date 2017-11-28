@@ -11,7 +11,7 @@ import hot.devices.Switch;
 public class HoT {
 
 	static HoT instance = null;
-	Map<String,Device> registry = new HashMap<String,Device>();
+	Map<String,Device> registry = new HashMap<>();
 	
 	public static void main(String[] args) {
 		System.out.println("Hi! I am the House of Things!");

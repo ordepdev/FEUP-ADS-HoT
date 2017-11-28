@@ -15,4 +15,13 @@ public abstract class BaseDevice implements Device {
   public boolean isOn() {
     return on;
   }
+
+  @Override
+  public Device clone() {
+    try {
+      return (Device) super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new RuntimeException();
+    }
+  }
 }

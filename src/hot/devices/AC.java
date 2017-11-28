@@ -1,6 +1,7 @@
 package hot.devices;
 
 import hot.BaseDevice;
+import hot.Device;
 
 public class AC extends BaseDevice {
 
@@ -15,4 +16,8 @@ public class AC extends BaseDevice {
 		return ambientTemperature;
 	}
 
+	@Override
+	public Device clone() {
+		return new AC();
+	}
 }
