@@ -29,17 +29,13 @@ public class Device {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		JButton button = new JButton("OFF");
-	    button.setMargin(new Insets(20, 20, 20, 20));
-	
-	    button.setOpaque(true);
-	    button.setContentAreaFilled(true);
-	    button.setBorderPainted(false);
-	    button.setFocusPainted(false);
-	    button.setBackground(Color.RED);
-	    button.setForeground(Color.BLACK);
-	
-		panel.add(button,BorderLayout.CENTER);
-						
+		button.setMargin(new Insets(20, 20, 20, 20));
+		button.setOpaque(true);
+		button.setContentAreaFilled(true);
+		button.setBorderPainted(false);
+		button.setFocusPainted(false);
+		button.setBackground(Color.RED);
+		button.setForeground(Color.BLACK);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (isOn()) {
@@ -53,6 +49,8 @@ public class Device {
 				}
 			}
 		});
+
+		panel.add(button,BorderLayout.CENTER);
 		return panel;		
 	}
 	
