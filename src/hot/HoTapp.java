@@ -1,10 +1,12 @@
+package hot;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import hot.Device;
-import hot.HoT;
+import hot.devices.DimmableLamp;
+import hot.devices.Lamp;
+import hot.ui.Dashboard;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -13,6 +15,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class HoTapp {
 
@@ -49,40 +54,21 @@ public class HoTapp {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel panel = new JPanel();
-		JPanel panel_1 = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.WEST);
-		
-		JLabel label1 = new JLabel("1 OFF");
-		panel_1.add(label1);
-		
-		JLabel label2 = new JLabel("2 OFF");
-		panel_1.add(label2);
+		Dashboard dashboard = new Dashboard();
+		frame.getContentPane().add(dashboard.getPanel(), BorderLayout.CENTER);
 
-		JButton btnNewButton_1 = new JButton("Lamp 1");
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
-		panel.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Lamp 2");
-		panel.add(btnNewButton_2);
-		
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Device d = HoT.getInstance().getDevice("L1");
-				if (d.isOn()) {
-					label1.setText("L1 OFF");
-					d.turnOff();
-				} else {
-					label1.setText("L1 ON");
-					d.turnOn();
-				}
-				
-			}
-		});
-
-		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
-		
+		dashboard.add(new Lamp(),0,0,2,1);
+		dashboard.add(new Lamp(),0,1,1,1);
+		dashboard.add(new Lamp(),0,2,1,1);
+		dashboard.add(new Lamp(),0,3,1,1);
+		dashboard.add(new Lamp(),1,1,1,1);
+		dashboard.add(new Lamp(),1,2,1,1);
+		dashboard.add(new Lamp(),1,3,1,1);
+		dashboard.add(new Lamp(),2,0,2,2);
+		dashboard.add(new Lamp(),2,2,1,1);
+		dashboard.add(new Lamp(),2,3,1,1);
+		dashboard.add(new Lamp(),3,2,1,1);
+		dashboard.add(new DimmableLamp(),3,3,1,1);
 	}
 
 }
