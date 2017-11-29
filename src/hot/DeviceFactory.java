@@ -17,6 +17,6 @@ public class DeviceFactory {
 	}
 
 	public static Device create(String deviceType) {
-		return (Device) prototypes.getOrDefault(deviceType, new NullDevice()).clone();
+		return prototypes.getOrDefault(deviceType, new NullDevice()).clone();
 	}
 }
