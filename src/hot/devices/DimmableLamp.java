@@ -3,38 +3,40 @@ package hot.devices;
 import hot.BaseDevice;
 import hot.Device;
 
-public class DimmableLamp extends BaseDevice implements DimmableDevice  {
+public class DimmableLamp extends BaseDevice implements DimmableDevice {
 
-	private Device device;
+  private Device device;
 
-	private int intensity = 0;
+  private int intensity = 0;
 
-	public DimmableLamp(Device device) {
-		this.device = device;
-	}
+  public DimmableLamp(Device device) {
+    this.device = device;
+  }
 
-	@Override
-	public void turnOn() {
-		this.device.turnOn();
-	}
+  @Override
+  public void turnOn() {
+    super.turnOn();
+    this.device.turnOn();
+  }
 
-	@Override
-	public void turnOff() {
-		this.device.turnOff();
-	}
+  @Override
+  public void turnOff() {
+    super.turnOff();
+    this.device.turnOff();
+  }
 
-	@Override
-	public boolean isOn() {
-		return this.device.isOn();
-	}
+  @Override
+  public boolean isOn() {
+    return super.isOn();
+  }
 
-	@Override
-	public void dimmTo(int i) {
-		intensity = i;
-	}
+  @Override
+  public void dimmTo(int intensity) {
+    this.intensity = intensity;
+  }
 
   @Override
   public int getIntensity() {
-		return intensity;
-	}
+    return intensity;
+  }
 }
