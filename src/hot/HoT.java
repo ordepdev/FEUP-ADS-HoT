@@ -1,68 +1,65 @@
 package hot;
 
-import java.util.HashMap;
-import java.util.Map;
+import hot.ui.Dashboard;
 
-import hot.devices.AC;
-import hot.devices.DimmableLamp;
-import hot.devices.RoomSystem;
-import hot.devices.Switch;
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
 public class HoT {
 
-	static HoT instance = null;
-	Map<String,Device> registry = new HashMap<>();
-	
+	private static HoT instance;
+
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		System.out.println("Hi! I am the House of Things!");
-		getInstance().init();
+		EventQueue.invokeLater(() -> {
+      try {
+				HoT.instance();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    });
 	}
 
-	private void init() {
-		// setup
-		Device l1 = DeviceFactory.create("Lamp"); registry.put("L1", l1);
-		Device l2 = DeviceFactory.create("Lamp"); registry.put("L2", l2);
-		DimmableLamp l3 = (DimmableLamp) DeviceFactory.create("DimmableLamp");
-		AC ac = new AC();
-		ac.setTemperature(21);
-
-		Switch suitch = new Switch();
-		Device roomSystem = new RoomSystem(l1, l2, l3, ac);
-
-		// usage scenarios
-		suitch.connectTo(roomSystem);
-		suitch.turnOn();
-		
-		// verifying the system...
-		if (l1.isOn() && l2.isOn())
-			System.out.println("Yeah!");
-		else {
-			System.out.println("This is not working...");
-		}
-		
-		l3.dimmTo(5);
-		if (l3.isOn() && l3.getIntensity() == 5)
-			System.out.println("Yeah!");
-		else {
-			System.out.println("Dimmer is not working...");
-		}
-		
-		if (ac.getTemperature() == 21)
-			System.out.println("Yeah!");
-		else {
-			System.out.println("AC is not working...");
-		}
+	/**
+	 * Create the application.
+	 */
+	private HoT() {
+		initialize();
 	}
 
-	public static HoT getInstance() {
-		if (instance == null) {
+	public static HoT instance() {
+		if(instance == null){
 			instance = new HoT();
-			instance.init();
 		}
-		return instance;	
+		return instance;
 	}
 
-	public Device getDevice(String name) {
-		return registry.get(name);
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		JFrame frame = new JFrame();
+		frame.setVisible(true);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Dashboard dashboard = new Dashboard();
+		frame.getContentPane().add(dashboard.getPanel(), BorderLayout.CENTER);
+
+		dashboard.add(DeviceFactory.create("Lamp"),0,0,2,1);
+		dashboard.add(DeviceFactory.create("Lamp"),0,1,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),0,2,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),0,3,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),1,1,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),1,2,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),1,3,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),2,0,2,2);
+		dashboard.add(DeviceFactory.create("Lamp"),2,2,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),2,3,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),3,2,1,1);
+		dashboard.add(DeviceFactory.create("DimmableLamp"),3,3,1,1);
 	}
 }

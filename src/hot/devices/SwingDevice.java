@@ -2,6 +2,7 @@ package hot.devices;
 
 import hot.BaseDevice;
 import hot.Device;
+import hot.ui.ObservableButton;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -17,9 +18,29 @@ public class SwingDevice extends BaseDevice {
     this.device = device;
   }
 
+  @Override
+  public void turnOn() {
+    this.device.turnOn();
+  }
+
+  @Override
+  public void turnOff() {
+    this.device.turnOff();
+  }
+
+  @Override
+  public boolean isOn() {
+    return this.device.isOn();
+  }
+
   public JPanel panel() {
     JPanel panel = new JPanel();
     panel.setLayout(new BorderLayout());
+    panel.add(button(), BorderLayout.CENTER);
+    return panel;
+  }
+
+  private JButton button() {
     JButton button = new JButton("OFF");
     button.setMargin(new Insets(20, 20, 20, 20));
     button.setOpaque(true);
@@ -30,17 +51,12 @@ public class SwingDevice extends BaseDevice {
     button.setBackground(Color.RED);
     button.addActionListener(e -> {
       if (device.isOn()) {
-        button.setText("OFF");
-        button.setBackground(Color.RED);
         turnOff();
       } else {
-        button.setText("ON");
-        button.setBackground(Color.GREEN);
         turnOn();
       }
     });
-
-    panel.add(button,BorderLayout.CENTER);
-    return panel;
+    this.device.register(new ObservableButton(button));
+    return button;
   }
 }

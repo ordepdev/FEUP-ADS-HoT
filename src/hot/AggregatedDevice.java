@@ -1,5 +1,9 @@
 package hot;
 
+import hot.devices.Status;
+import hot.ui.StatusObserver;
+import org.apache.commons.lang3.SerializationUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +11,7 @@ import java.util.List;
 public abstract class AggregatedDevice implements Device {
 
   private List<Device> devices = new ArrayList<>();
+  private List<StatusObserver> observers = new ArrayList<>();
 
   public AggregatedDevice(Device... devices) {
     this.devices.addAll(Arrays.asList(devices));
@@ -28,7 +33,17 @@ public abstract class AggregatedDevice implements Device {
   }
 
   @Override
+  public void register(StatusObserver observer) {
+    this.observers.add(observer);
+  }
+
+  @Override
+  public void notifyObservers() {
+    observers.forEach(observer -> observer.update(isOn() ? Status.ON : Status.OFF));
+  }
+
+  @Override
   public Device clone() {
-    return this.clone();
+    return SerializationUtils.clone(this);
   }
 }

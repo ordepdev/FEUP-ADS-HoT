@@ -15,9 +15,4 @@ public class AC extends BaseDevice {
 	public int getTemperature() {
 		return ambientTemperature;
 	}
-
-	@Override
-	public Device clone() {
-		return new AC();
-	}
 }
