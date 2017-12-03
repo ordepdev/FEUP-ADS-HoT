@@ -9,21 +9,21 @@ import java.util.List;
 
 public abstract class BaseDevice implements Device, Cloneable {
 
-  private boolean on = false;
+  private Status status = Status.OFF;
   private List<StatusObserver> observers = new ArrayList<>();
 
   public void turnOn() {
-    this.on = true;
+    this.status = Status.ON;
     notifyObservers();
   }
 
   public void turnOff() {
-    this.on = false;
+    this.status = Status.OFF;
     notifyObservers();
   }
 
   public boolean isOn() {
-    return this.on;
+    return this.status.equals(Status.ON);
   }
 
   @Override
@@ -33,7 +33,7 @@ public abstract class BaseDevice implements Device, Cloneable {
 
   @Override
   public void notifyObservers() {
-    observers.forEach(observer -> observer.update(on ? Status.ON : Status.OFF));
+    observers.forEach(observer -> observer.update(this.status));
   }
 
   @Override
