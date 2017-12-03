@@ -4,4 +4,5 @@ public interface Device {
   void turnOn();
   void turnOff();
   boolean isOn();
+  Device clone();
 }

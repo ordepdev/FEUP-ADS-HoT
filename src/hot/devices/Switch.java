@@ -17,4 +17,9 @@ public class Switch extends BaseDevice {
 	public void turnOn() {
 		devices.forEach(Device::turnOn);
 	}
+
+  @Override
+  public Device clone() {
+    return new Switch();
+  }
 }

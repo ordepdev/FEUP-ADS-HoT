@@ -27,16 +27,14 @@ public class HoTapp {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HoTapp window = new HoTapp();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		EventQueue.invokeLater(() -> {
+      try {
+        HoTapp window = new HoTapp();
+        window.frame.setVisible(true);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    });
 	}
 
 	/**
@@ -57,18 +55,17 @@ public class HoTapp {
 		Dashboard dashboard = new Dashboard();
 		frame.getContentPane().add(dashboard.getPanel(), BorderLayout.CENTER);
 
-		dashboard.add(new Lamp(),0,0,2,1);
-		dashboard.add(new Lamp(),0,1,1,1);
-		dashboard.add(new Lamp(),0,2,1,1);
-		dashboard.add(new Lamp(),0,3,1,1);
-		dashboard.add(new Lamp(),1,1,1,1);
-		dashboard.add(new Lamp(),1,2,1,1);
-		dashboard.add(new Lamp(),1,3,1,1);
-		dashboard.add(new Lamp(),2,0,2,2);
-		dashboard.add(new Lamp(),2,2,1,1);
-		dashboard.add(new Lamp(),2,3,1,1);
-		dashboard.add(new Lamp(),3,2,1,1);
-		dashboard.add(new DimmableLamp(),3,3,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),0,0,2,1);
+		dashboard.add(DeviceFactory.create("Lamp"),0,1,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),0,2,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),0,3,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),1,1,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),1,2,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),1,3,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),2,0,2,2);
+		dashboard.add(DeviceFactory.create("Lamp"),2,2,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),2,3,1,1);
+		dashboard.add(DeviceFactory.create("Lamp"),3,2,1,1);
+		dashboard.add(DeviceFactory.create("DimmableLamp"),3,3,1,1);
 	}
-
 }

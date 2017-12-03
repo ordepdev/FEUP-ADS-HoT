@@ -1,25 +1,22 @@
 package hot;
 
+import hot.devices.DimmableLamp;
+import hot.devices.Lamp;
 import hot.devices.NullDevice;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DeviceFactory {
 
+	private static final Map<String, Device> prototypes = new HashMap<>();
+
+	static {
+		prototypes.put("Lamp", new Lamp());
+		prototypes.put("DimmableLamp", new DimmableLamp(new Lamp()));
+	}
+
 	public static Device create(String deviceType) {
-		Device device = new NullDevice();
-		
-		try {
-			Class deviceClass = Class.forName("hot.devices."+deviceType); 
-			device = (Device)deviceClass.newInstance();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		return device;
+		return prototypes.getOrDefault(deviceType, new NullDevice()).clone();
 	}
 }
