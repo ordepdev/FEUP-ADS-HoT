@@ -1,9 +1,8 @@
 package hot.devices;
 
-import hot.BaseDevice;
 import hot.Device;
 
-public class DimmableLamp extends BaseDevice implements DimmableDevice {
+public class DimmableLamp extends LampDecorator implements DimmableDevice {
 
   private Device device;
 

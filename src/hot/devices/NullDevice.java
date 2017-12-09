@@ -1,19 +1,32 @@
 package hot.devices;
 
 import hot.BaseDevice;
+import hot.Device;
 
 public class NullDevice extends BaseDevice {
 
-	@Override
-	public void turnOn() {
-	}
+  private static Device instance;
+
+  public static Device instance() {
+    if(instance == null){
+      instance = new NullDevice();
+    }
+    return instance;
+  }
+
+  private NullDevice() {
+  }
 
   @Override
-	public void turnOff() {
-	}
+  public void turnOn() {
+  }
 
   @Override
-	public boolean isOn() {
-		return false;
-	}
+  public void turnOff() {
+  }
+
+  @Override
+  public boolean isOn() {
+    return false;
+  }
 }

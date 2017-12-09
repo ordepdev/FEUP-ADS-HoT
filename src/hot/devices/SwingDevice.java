@@ -1,6 +1,5 @@
 package hot.devices;
 
-import hot.BaseDevice;
 import hot.Device;
 import hot.ui.ObservableButton;
 
@@ -10,7 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Insets;
 
-public class SwingDevice extends BaseDevice {
+public class SwingDevice extends LampDecorator {
 
   private Device device;
 

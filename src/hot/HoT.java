@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-public class HoT {
+public final class HoT {
 
 	private static HoT instance;
 
