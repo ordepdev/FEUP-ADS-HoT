@@ -1,7 +1,8 @@
 package hot;
 
+import hot.state.Off;
+import hot.state.State;
 import hot.ui.StatusObserver;
-import hot.devices.Status;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.ArrayList;
@@ -9,21 +10,24 @@ import java.util.List;
 
 public abstract class BaseDevice implements Device, Cloneable {
 
-  private Status status = Status.OFF;
+  private State state = new Off();
   private List<StatusObserver> observers = new ArrayList<>();
 
   public void turnOn() {
-    this.status = Status.ON;
-    notifyObservers();
+    changeState();
   }
 
   public void turnOff() {
-    this.status = Status.OFF;
+    changeState();
+  }
+
+  private void changeState() {
+    this.state = this.state().next();
     notifyObservers();
   }
 
   public boolean isOn() {
-    return this.status.equals(Status.ON);
+    return this.state.isOn();
   }
 
   @Override
@@ -33,7 +37,12 @@ public abstract class BaseDevice implements Device, Cloneable {
 
   @Override
   public void notifyObservers() {
-    observers.forEach(observer -> observer.update(this.status));
+    observers.forEach(StatusObserver::update);
+  }
+
+  @Override
+  public State state() {
+    return this.state;
   }
 
   @Override

@@ -55,7 +55,7 @@ public class SwingDevice extends LampDecorator {
         turnOn();
       }
     });
-    this.device.register(new ObservableButton(button));
+    this.device.register(new ObservableButton(this.device, button));
     return button;
   }
 }

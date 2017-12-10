@@ -1,6 +1,6 @@
 package hot.ui;
 
-import hot.devices.Status;
+import hot.Device;
 
 import javax.swing.AbstractButton;
 
@@ -12,15 +12,18 @@ import javax.swing.AbstractButton;
  */
 public class ObservableButton extends AbstractButton implements StatusObserver {
 
+  private final Device device;
+
   private final AbstractButton button;
 
-  public ObservableButton(AbstractButton button) {
+  public ObservableButton(Device device, AbstractButton button) {
+    this.device = device;
     this.button = button;
   }
 
   @Override
-  public void update(Status status) {
-    this.button.setText(status.name());
-    this.button.setBackground(status.color());
+  public void update() {
+    this.button.setText(device.state().text());
+    this.button.setBackground(device.state().color());
   }
 }

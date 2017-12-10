@@ -1,6 +1,8 @@
 package hot;
 
 import hot.devices.Status;
+import hot.state.Off;
+import hot.state.State;
 import hot.ui.StatusObserver;
 import org.apache.commons.lang3.SerializationUtils;
 
@@ -33,13 +35,18 @@ public abstract class AggregatedDevice implements Device {
   }
 
   @Override
+  public State state() {
+    return devices.stream().map(Device::state).findFirst().orElse(new Off());
+  }
+
+  @Override
   public void register(StatusObserver observer) {
     this.observers.add(observer);
   }
 
   @Override
   public void notifyObservers() {
-    observers.forEach(observer -> observer.update(isOn() ? Status.ON : Status.OFF));
+    observers.forEach(StatusObserver::update);
   }
 
   @Override
