@@ -31,7 +31,7 @@ public abstract class AggregatedDevice implements Device {
 
   @Override
   public boolean isOn() {
-    return devices.stream().allMatch(Device::isOn);
+    return devices.stream().anyMatch(Device::isOn);
   }
 
   @Override
