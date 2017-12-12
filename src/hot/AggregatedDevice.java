@@ -1,9 +1,9 @@
 package hot;
 
-import hot.devices.Status;
 import hot.state.Off;
 import hot.state.State;
 import hot.ui.StatusObserver;
+import hot.visitor.DeviceVisitor;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.util.ArrayList;
@@ -17,6 +17,10 @@ public abstract class AggregatedDevice implements Device {
 
   public AggregatedDevice(Device... devices) {
     this.devices.addAll(Arrays.asList(devices));
+  }
+
+  public List<Device> devices() {
+    return this.devices;
   }
 
   @Override
@@ -47,6 +51,11 @@ public abstract class AggregatedDevice implements Device {
   @Override
   public void notifyObservers() {
     observers.forEach(StatusObserver::update);
+  }
+
+  @Override
+  public void accept(DeviceVisitor visitor) {
+    visitor.visit(this);
   }
 
   @Override

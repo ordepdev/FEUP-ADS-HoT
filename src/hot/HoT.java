@@ -1,10 +1,13 @@
 package hot;
 
+import hot.devices.RoomSystem;
 import hot.ui.Dashboard;
+import hot.visitor.StatusLogger;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.Arrays;
 
 public final class HoT {
 
@@ -61,5 +64,17 @@ public final class HoT {
 		dashboard.add(DeviceFactory.create("Lamp"),2,3,1,1);
 		dashboard.add(DeviceFactory.create("Lamp"),3,2,1,1);
 		dashboard.add(DeviceFactory.create("DimmableLamp"),3,3,1,1);
-	}
+
+    Arrays.asList(
+        DeviceFactory.create("DimmableLamp"),
+        DeviceFactory.create("Lamp"),
+        DeviceFactory.create("Lamp"),
+        DeviceFactory.create("Lamp"),
+        new RoomSystem(
+            DeviceFactory.create("Lamp"),
+            DeviceFactory.create("Lamp"),
+            DeviceFactory.create("DimmableLamp")
+        )
+    ).forEach(y -> y.accept(new StatusLogger()));
+  }
 }
