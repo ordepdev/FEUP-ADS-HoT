@@ -19,6 +19,11 @@ public abstract class AggregatedDevice implements Device {
     this.devices.addAll(Arrays.asList(devices));
   }
 
+  public AggregatedDevice(List<Device> devices, List<StatusObserver> observers) {
+    this.devices = devices;
+    this.observers = observers;
+  }
+
   public List<Device> devices() {
     return this.devices;
   }

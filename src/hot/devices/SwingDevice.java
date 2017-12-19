@@ -1,6 +1,7 @@
 package hot.devices;
 
 import hot.Device;
+import hot.builders.ButtonBuilder;
 import hot.ui.ObservableButton;
 
 import javax.swing.JButton;
@@ -40,22 +41,13 @@ public class SwingDevice extends LampDecorator {
   }
 
   private JButton button() {
-    JButton button = new JButton("OFF");
-    button.setMargin(new Insets(20, 20, 20, 20));
-    button.setOpaque(true);
-    button.setContentAreaFilled(true);
-    button.setBorderPainted(false);
-    button.setFocusPainted(false);
-    button.setForeground(Color.BLACK);
-    button.setBackground(Color.RED);
-    button.addActionListener(e -> {
-      if (device.isOn()) {
-        turnOff();
-      } else {
-        turnOn();
-      }
-    });
-    this.device.register(new ObservableButton(this.device, button));
-    return button;
+    return new ButtonBuilder()
+      .withMargin(20)
+      .opaque()
+      .filled()
+      .withForeground(Color.BLACK)
+      .withBackground(Color.RED)
+      .withDevice(device)
+      .build();
   }
 }
